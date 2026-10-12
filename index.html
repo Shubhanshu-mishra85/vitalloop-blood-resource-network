@@ -1,0 +1,486 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="VitalLoop connects blood donors and people seeking blood donation support.">
+  <title>VitalLoop | Blood Resource Network</title>
+
+  <style>
+    :root {
+      --red: #c9273b;
+      --dark-red: #941c2c;
+      --ink: #202531;
+      --muted: #697386;
+      --bg: #fff8f8;
+      --white: #ffffff;
+      --line: #f0dfe2;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      background: var(--white);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(1100px, 90%);
+      margin: auto;
+    }
+
+    header {
+      border-bottom: 1px solid var(--line);
+      background: white;
+    }
+
+    nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      font-size: 1.55rem;
+      font-weight: 800;
+      color: var(--red);
+      letter-spacing: -1px;
+    }
+
+    .brand span { color: var(--ink); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      font-size: .92rem;
+    }
+
+    .nav-links a:hover { color: var(--red); }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 19px;
+      border: 0;
+      border-radius: 8px;
+      background: var(--red);
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .btn:hover { background: var(--dark-red); }
+
+    .btn-outline {
+      color: var(--red);
+      background: white;
+      border: 1px solid var(--red);
+    }
+
+    .btn-outline:hover {
+      background: var(--bg);
+      color: var(--dark-red);
+    }
+
+    .hero {
+      padding: 78px 0;
+      background: linear-gradient(120deg, #fff4f4, #ffffff 70%);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.3fr .7fr;
+      align-items: center;
+      gap: 48px;
+    }
+
+    .eyebrow {
+      color: var(--red);
+      font-weight: 800;
+      text-transform: uppercase;
+      font-size: .78rem;
+      letter-spacing: 2px;
+    }
+
+    h1 {
+      margin: 14px 0;
+      font-size: clamp(2.3rem, 5vw, 4rem);
+      line-height: 1.12;
+      letter-spacing: -2px;
+    }
+
+    h1 span { color: var(--red); }
+
+    .intro {
+      max-width: 570px;
+      color: var(--muted);
+      font-size: 1.08rem;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 26px;
+    }
+
+    .hero-card {
+      padding: 32px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: white;
+      box-shadow: 0 18px 55px #9b20300d;
+    }
+
+    .drop {
+      width: 68px;
+      height: 68px;
+      display: grid;
+      place-items: center;
+      border-radius: 20px;
+      background: #fff0f1;
+      color: var(--red);
+      font-size: 2rem;
+    }
+
+    .hero-card h2 { margin-bottom: 8px; }
+
+    .hero-card p, .muted { color: var(--muted); }
+
+    section { padding: 65px 0; }
+
+    .section-heading {
+      text-align: center;
+      max-width: 650px;
+      margin: 0 auto 32px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(1.7rem, 3vw, 2.4rem);
+      margin: 8px 0;
+    }
+
+    .section-heading p { color: var(--muted); }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .card {
+      padding: 25px;
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      background: white;
+    }
+
+    .card .symbol {
+      font-size: 1.7rem;
+      color: var(--red);
+    }
+
+    .card h3 { margin: 12px 0 6px; }
+    .card p { color: var(--muted); font-size: .95rem; }
+
+    .soft { background: var(--bg); }
+
+    .form-wrap {
+      max-width: 720px;
+      margin: auto;
+      padding: 30px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: white;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .field.full { grid-column: 1 / -1; }
+
+    label {
+      font-size: .9rem;
+      font-weight: 700;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #d9dce3;
+      border-radius: 8px;
+      font: inherit;
+      background: white;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: 2px solid #f2b4bc;
+      border-color: var(--red);
+    }
+
+    .notice {
+      padding: 13px;
+      margin: 18px 0;
+      border-radius: 8px;
+      background: #fff4e6;
+      color: #754b14;
+      font-size: .86rem;
+    }
+
+    footer {
+      padding: 27px 0;
+      background: #202531;
+      color: white;
+    }
+
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    footer p {
+      margin: 4px 0;
+      color: #d4d8e1;
+      font-size: .88rem;
+    }
+
+    @media (max-width: 760px) {
+      .nav-links { gap: 12px; font-size: .8rem; }
+      .nav-links .btn { padding: 9px; }
+      .hero { padding: 48px 0; }
+      .hero-grid { grid-template-columns: 1fr; gap: 28px; }
+      .cards { grid-template-columns: 1fr; }
+      .form-grid { grid-template-columns: 1fr; }
+      .field.full { grid-column: auto; }
+      section { padding: 45px 0; }
+    }
+
+    @media (max-width: 420px) {
+      nav { align-items: flex-start; padding: 15px 0; flex-direction: column; }
+      .nav-links { flex-wrap: wrap; }
+      .hero-card, .form-wrap { padding: 20px; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav class="container">
+      <a class="brand" href="#home">Vital<span>Loop</span></a>
+
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#donor">Register</a>
+        <a class="btn" href="#request">Request Blood</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Blood Resource Network</div>
+          <h1>Every donor can make a <span>difference.</span></h1>
+          <p class="intro">
+            VitalLoop is a concept platform designed to help coordinate
+            blood donation requests and connect people with potential donors.
+          </p>
+          <div class="actions">
+            <a class="btn" href="#donor">Become a Donor</a>
+            <a class="btn btn-outline" href="#request">Find Donation Support</a>
+          </div>
+          <p class="muted">A student portfolio project currently under development.</p>
+        </div>
+
+        <div class="hero-card">
+          <div class="drop" aria-hidden="true">♥</div>
+          <h2>Give hope. Support life.</h2>
+          <p>
+            A simple, organized way to record donor information
+            and blood requests.
+          </p>
+          <a class="btn" href="#services">Explore the platform</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container section-heading">
+        <div class="eyebrow">Our mission</div>
+        <h2>Making donor coordination easier</h2>
+        <p>
+          VitalLoop aims to organize donor records, simplify request
+          management, and make coordination more accessible.
+        </p>
+      </div>
+    </section>
+
+    <section class="soft" id="services">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">What the platform aims to offer</div>
+          <h2>Designed around three needs</h2>
+        </div>
+
+        <div class="cards">
+          <article class="card">
+            <div class="symbol" aria-hidden="true">♡</div>
+            <h3>Donor Registration</h3>
+            <p>Provide a structured form for voluntary donor registration.</p>
+          </article>
+
+          <article class="card">
+            <div class="symbol" aria-hidden="true">⌕</div>
+            <h3>Donor Search</h3>
+            <p>Plan searches by blood group and city once the database is connected.</p>
+          </article>
+
+          <article class="card">
+            <div class="symbol" aria-hidden="true">+</div>
+            <h3>Blood Requests</h3>
+            <p>Organize request details and track their status in a future backend.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="donor">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">Join the network</div>
+          <h2>Donor registration</h2>
+          <p>This is a frontend demonstration. Do not enter real personal information.</p>
+        </div>
+
+        <form class="form-wrap" action="#" method="get">
+          <div class="form-grid">
+            <div class="field">
+              <label for="donor-name">Full name</label>
+              <input id="donor-name" name="name" type="text"
+                     placeholder="Demo name" required>
+            </div>
+
+            <div class="field">
+              <label for="blood-group">Blood group</label>
+              <select id="blood-group" name="blood_group" required>
+                <option value="">Select blood group</option>
+                <option>A+</option><option>A-</option>
+                <option>B+</option><option>B-</option>
+                <option>AB+</option><option>AB-</option>
+                <option>O+</option><option>O-</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="city">City</label>
+              <input id="city" name="city" type="text"
+                     placeholder="Enter a demo city" required>
+            </div>
+
+            <div class="field">
+              <label for="availability">Availability</label>
+              <select id="availability" name="availability" required>
+                <option value="">Select status</option>
+                <option value="available">Available to be contacted</option>
+                <option value="unavailable">Currently unavailable</option>
+              </select>
+            </div>
+
+            <div class="field full">
+              <div class="notice">
+                Demo only: this form does not securely save or submit donor
+                records. Backend, consent and privacy controls are not yet implemented.
+              </div>
+              <button class="btn" type="submit">Preview Form Submission</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="soft" id="request">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">Request coordination</div>
+          <h2>Blood request form</h2>
+          <p>For demonstration only—not a real blood availability service.</p>
+        </div>
+
+        <form class="form-wrap" action="#" method="get">
+          <div class="form-grid">
+            <div class="field">
+              <label for="request-group">Blood group needed</label>
+              <select id="request-group" name="blood_group" required>
+                <option value="">Select blood group</option>
+                <option>A+</option><option>A-</option>
+                <option>B+</option><option>B-</option>
+                <option>AB+</option><option>AB-</option>
+                <option>O+</option><option>O-</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="units">Units requested</label>
+              <input id="units" name="units" type="number"
+                     min="1" max="10" required>
+            </div>
+
+            <div class="field full">
+              <label for="hospital">Hospital or location</label>
+              <input id="hospital" name="location" type="text"
+                     placeholder="Demo location" required>
+            </div>
+
+            <div class="field full">
+              <label for="request-notes">Additional details</label>
+              <textarea id="request-notes" name="notes" rows="3"
+                        placeholder="Use sample information only"></textarea>
+            </div>
+
+            <div class="field full">
+              <div class="notice">
+                No request is sent to donors. For an actual urgent need,
+                contact a licensed blood bank or hospital directly.
+              </div>
+              <button class="btn" type="submit">Preview Request</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-row">
+      <div>
+        <strong>VitalLoop</strong>
+        <p>Blood Resource Network — student project.</p>
+      </div>
+      <p>Educational demonstration. Not a verified blood bank or emergency service.</p>
+    </div>
+  </footer>
+</body>
+</html>
